@@ -4,26 +4,31 @@ import { Character } from "./Character";
 
 function NavPage({ page, setPage }) {
   return (
-    <header className="d-flex  justify-content-evenly align-items-center bg-dark p-4">
-     
-      <button
-        className="badge text-bg-light"
-        onClick={() => setPage(page - 1)}
-      >
-        Previous Page {page - 1}
-      </button>  
 
-      <button className="badge text-bg-light"      
-      > Actual Page {page}</button>
+    //Pagination
+    <header className="d-flex  justify-content-end align-items-center bg-dark py-2">
 
-      <button
-        className="badge text-bg-light"
-        onClick={() => setPage(page + 1)}
-      >
-        Next Page {page + 1}
-      </button>  
+      <nav aria-label="...">
 
-    </header>   
+        <ul class="pagination">
+
+          <li class="page-item"><a className="page-link"
+            onClick={() => setPage(page - 1)}>Previous</a></li>
+
+          <li class="page-item"><a className="page-link"
+          >  {page} </a></li>
+
+          <li class="page-item"><a className="page-link"
+            onClick={() => setPage(page + 1)}>Next</a></li>
+
+        </ul>
+
+      </nav>
+
+
+    </header>
+
+
 
 
   );
@@ -58,6 +63,7 @@ export function CharacterList() {
         <div>Loading...</div>
       ) : (
         <div className="row">
+          <div className=""> </div>
           {characters.map((character) => (
             <div className=" bg-dark col-md-3  py-2 " key={character.id}>
               <Character
@@ -66,13 +72,15 @@ export function CharacterList() {
                 name={character.name}
                 origin={character.origin}
                 status={character.status}
-               
-               
               />
             </div>
+            
+
+
           ))}
         </div>
       )}
+  
 
 
       <NavPage page={page} setPage={setPage} />
